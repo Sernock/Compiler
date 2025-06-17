@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+char *month_name(int n)
+{
+    static char *name[] = {
+        "illegal month",
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    };
+    return (n < 1 || n > 12) ? name[0] : name[n];
+}
+
+int main(void)
+{
+    int month = 11;
+    printf("%d\n%s\n", month, month_name(month));
+    return 0;
+}

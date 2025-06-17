@@ -1,0 +1,59 @@
+/*
+. На вход программе подается строка, состоящая из слов, разделенных пробелом.
+Необходимо прочитать строку и подсчитать число слов в ней. Результат (число слов) отобразить на экране.
+
+a, b, c = input().split()
+a = a.rjust(3, '0')
+b = b.rjust(3, '0')
+c = c.rjust(3, '0')
+print(a, b, c, sep='\n')
+print(type(a))
+*/
+
+#include <stdio.h>
+#include <string.h>
+#define MAXLINE 100
+
+enum { OUT, IN };
+
+int count_words(char s[]);
+
+int main(void) 
+{
+    char line[MAXLINE];
+    fgets(line, MAXLINE, stdin);
+
+    char *ptr = strrchr(line, '\n');
+    if (ptr != NULL) {
+        *ptr = '\0';
+    }
+
+    int res = count_words(line);
+    printf("%d", res);
+    return 0;
+}
+
+int count_words(char s[])
+{
+    int i = 0;
+    int state = OUT;
+    int count = 0;
+    for (i = 0; s[i] != '\0'; ++i) {
+        if (s[i] == ' ' || s[i] == '\t' || s[i] == '\n') {
+            if (state == IN) {
+                ++count;
+                state = OUT;
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+            }
+        }
+    }
+
+    if (state == IN) 
+        ++count;
+
+    return count;
+
+}

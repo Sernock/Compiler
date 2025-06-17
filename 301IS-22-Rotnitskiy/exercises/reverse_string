@@ -1,0 +1,41 @@
+// Напишите программу на языке C, которая принимает на вход строку и выводит ее в обратном порядке. Используйте функцию scanf для чтения строки и функцию printf для вывода результата.
+
+#include <stdio.h>
+#define MAXLINE 100
+
+void reverse(char line[]);
+int main()
+{
+    int i;
+    char line[MAXLINE];
+    for(int i = 0; i < MAXLINE - 1 && (scanf("%c", &line[i])) != EOF; ++i){
+        ;
+    }
+    line[i] = '\0';
+    reverse(line);
+    printf("%s", line);
+}
+
+void reverse(char line[])
+{
+    int start, end;
+    start = end = 0;
+
+    while(line[end] != '\0'){
+        ++end;
+    }
+    --end;
+
+    if(line[end] == '\n'){
+        --end;
+    }
+
+    while(start < end){
+        int temp = line[start];
+        line[start] = line[end];
+        line[end] = temp;
+
+        ++start;
+        --end;
+    }
+}

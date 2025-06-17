@@ -1,0 +1,40 @@
+
+// 3.3 Подвиг 2
+// На вход программе подается слово в виде строки. Необходимо прочитать это слово и его первую букву сделать заглавной, а остальные - малыми. Результат отобразить на экране.
+/*
+st = input()
+print(st[0].upper() + st[1:].lower())
+*/
+#include <stdio.h>
+#include <string.h>
+#define MAXLINE 20
+
+void string_format(char line[]);
+
+int main(void)
+{
+    char line[MAXLINE];
+    fgets(line, MAXLINE, stdin);
+
+    char *ptr = strrchr(line, '\n');
+    if (ptr != NULL) {
+        *ptr = '\0';
+    }
+
+    string_format(line);
+    printf("%s", line);
+    return 0;
+}
+
+void string_format(char line[])
+{
+    if (line[0] >= 'a' && line[0] <= 'z') {
+        line[0] -= 'a' - 'A';
+    }
+
+    for (int i = 1; line[i] != '\0'; ++i) {
+        if (line[i] >= 'A' && line[i] <= 'Z') {
+            line[i] += 'a' - 'A';
+        }
+    }
+}

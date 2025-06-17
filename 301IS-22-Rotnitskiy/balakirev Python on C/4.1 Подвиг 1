@@ -1,0 +1,29 @@
+/*
+На вход программе подаются два вещественных числа,
+записанных в одну строку через пробел. 
+Необходимо их прочитать и вывести на экран наибольшее из этих чисел. Задачу решить с помощью условного оператора.
+
+num1, num2 = map(float, input().split())
+max = 0.0
+if num1 > num2:
+    max = num1
+else:
+    max = num2
+print(max)
+*/
+
+#include <stdio.h>
+
+int main(void) 
+{
+    double a, b;
+    scanf("%lf %lf", &a, &b);
+    
+    double max = 0.00;
+    if (a > b) {
+        max = a;
+    } else max = b;
+    
+    printf("%.1lf", max);
+    return 0;
+}

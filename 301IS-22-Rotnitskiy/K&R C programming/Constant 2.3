@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int Strlen(char s[]);
+int main(void)
+{
+    char s[] = "Hello world";
+    int c = Strlen(s);
+    int d = 11; // 11 - константа
+    double a = 123; // константа типа double 
+    int x = 0xFFFFFF; // шестнацитиричная
+    int l = 01234; // восьмеричная
+    int f = '\012'; // восьмеричная через строку в формате \ooo
+    int g = '\xe'; // шестнацатиричная через строку в форате \x-
+    printf("%c", f);
+    return 0;
+}
+
+int Strlen(char s[])
+{
+    int i;
+
+    i = 0;
+    while (s[i] != '\0')
+        ++i;
+    return i;
+}

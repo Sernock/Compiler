@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+enum size { ARRAY_1 = 100, ARRAY_2 = 10 };
+
+void Strcat(char s[], char t[]);
+
+int main(void)
+{
+    char first_ar[ARRAY_1];
+    char second_ar[ARRAY_2];
+    fgets(first_ar, ARRAY_1, stdin);  
+    fgets(second_ar, ARRAY_2, stdin);
+    Strcat(first_ar, second_ar);
+    printf("%s", first_ar);
+    return 0;
+}
+
+void Strcat(char s[], char t[])
+{
+    int i, j;
+
+    i = j = 0;
+    while (s[i] != '\0')
+        i++;
+    
+    while ((s[i++] = t[j++]) != '\0')
+        ;
+}
+

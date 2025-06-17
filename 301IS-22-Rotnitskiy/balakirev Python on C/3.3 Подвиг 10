@@ -1,0 +1,39 @@
+/*
+На вход программе подается строка, состоящая из названий городов, разделенных пробелом.
+Необходимо прочитать эту строку и преобразовать так, чтобы названия городов шли через точку с запятой (без пробелов). Результат  (строку) отобразите на экране.
+
+str = map(str, input().split())
+print(";".join(str))
+*/
+
+#include <stdio.h>
+#include <string.h>
+#define MAXLINE 100
+
+void space_into_colon(char s[]);
+
+int main(void)
+{
+    char s[MAXLINE];
+    fgets(s, MAXLINE, stdin);
+
+    char *ptr = strrchr(s, '\n');
+    if (ptr != NULL) {
+        *ptr = '\0';
+    }
+    space_into_colon(s);
+    printf("%s", s);
+}
+
+void space_into_colon(char s[])
+{
+    int i = 0;
+    int j = 0;
+    for (i = 0; s[i] != '\0'; ++i) {
+        if (s[i] == ' ' && s[i+1] != ' ') {
+            s[j++] = ';';
+        } else s[j++] = s[i];
+    }
+    s[j] = '\0';
+}
+

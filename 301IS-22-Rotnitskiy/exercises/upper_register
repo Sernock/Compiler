@@ -1,0 +1,31 @@
+//Задача: Напишите программу на языке C, которая принимает на вход строку и выводит ее в верхнем регистре.
+
+#include <stdio.h>
+#define MAXLINE 100
+
+void get_upper(char line[]);
+int main()
+{
+    int i;
+    char line[MAXLINE];
+    for(i = 0; i < MAXLINE - 1 && (scanf("%c", &line[i])) != EOF; ++i){
+        ;
+    }
+    line[i] = '\0';
+    get_upper(line);
+    printf("%s", line);
+}
+
+void get_upper(char line[])
+{
+    int c = 0;
+    while (line[c] != '\0'){
+        if(line[c] >= 'a' && line[c] <= 'z'){
+            line[c] = line[c] - 32;
+        }
+        ++c;
+    }
+    
+}
+
+

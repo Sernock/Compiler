@@ -1,0 +1,201 @@
+// 7.9. Программа. Дана непустая последовательность слов из прописных
+// (больших) латинских букв. Слова разделены пробелом; признак конца текста –
+// точка.
+// a) подсчитать количество слов в этом тексте;
+// b) подсчитать количество слов, у которых совпадают первая и последняя буквы;
+// c) подсчитать количество слов, являющихся некоторым фрагментом латинского алфавита;
+// d) подсчитать количество слов, содержащих все буквы, которые входят
+// в состав слова UNIX
+
+
+// Дана непустая последовательность слов из прописных
+// (больших) латинских букв. Слова разделены пробелом; признак конца текста –
+// точка.
+// a) подсчитать количество слов в этом тексте;
+#include <stdio.h>
+#include <ctype.h>
+
+enum { OUT, IN };
+
+int main(void)
+{
+    int c, count = 0;
+    int state = OUT;
+
+    while ((c = getchar()) != EOF && c != '.') {
+        if (c == ' ') {
+            if (state == IN) {
+                state = OUT;
+                count++;
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+            }
+        }
+    }
+    if (state == IN) {
+        ++count;
+    }
+
+    printf("%d", count);
+}
+
+
+// //b) подсчитать количество слов, у которых совпадают первая и последняя буквы;
+#include <stdio.h>
+#include <ctype.h>
+
+enum { OUT, IN };
+
+int main(void)
+{
+    int c, count = 0;
+    int state = OUT;
+    int start, end;
+    start = end = 0;
+
+
+    while ((c = getchar()) != EOF && c != '.') {
+        if (c == ' ') {
+            if (state == IN) {
+                if (start == end) {
+                    count++;
+                }
+                state = OUT;
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+
+                start = end = c;
+            }
+            end = c;
+        }
+    }
+
+    if (state == IN && start == end) {
+        ++count;
+    }
+
+    printf("%d", count);
+}
+
+// d) подсчитать количество слов, содержащих все буквы, которые входят
+// в состав слова UNIX
+
+#include <stdio.h>
+#include <ctype.h> // tolower, isspace
+#include <string.h> // strchr
+
+#define MAXLINE 1000
+
+enum { OUT, IN };
+
+int is_contain_unix(const char *s);
+
+int main(void)
+{   
+    char line[MAXLINE];
+    int c, i = 0;
+    int count = 0;
+    int state = OUT;
+
+    while ((c = getchar()) != EOF && c != '.') {
+        if (isspace(c)) {
+            if (state == IN) {
+                line[i] = '\0';
+                if (is_contain_unix(line)) {
+                    ++count;
+                }
+                i = 0;
+                state = OUT;
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+            }
+
+            line[i++] = tolower(c);
+        }
+    }
+
+    if (state == IN) {
+        line[i] = '\0';
+        if (is_contain_unix(line)) {
+            ++count;
+        }
+    }
+
+    printf("%d\n", count);
+    return 0;
+}
+
+int is_contain_unix(const char *s)
+{
+    const char *str = "unix";
+    for (; *str != '\0'; ++str) {
+        if (strchr(s, *str) == NULL) 
+            return 0;
+    }
+    return 1;
+}
+
+/*
+7.10. Программа. Дана непустая последовательность слов, разделенных
+пробелом; признак конца текста – точка. Длина каждого слова – не более 20 литер.
+a) распечатать все слова, у которых не совпадают первая и последняя
+буквы;
+b) распечатать все слова, являющиеся «перевертышами», т.е. словами,
+одинаково читающимися слева направо и справа налево;
+c) распечатать текст, оставив из рядом стоящих одинаковых слов только одно;
+d) распечатать текст, удалив все слова, где есть символы, отличные от
+латинских букв. 
+
+*/
+
+#include <stdio.h>
+#include <ctype.h>
+
+enum { OUT, IN, MAXWORD = 20 };
+
+int main(void)
+{
+    int c, state = OUT;
+    char mass[MAXWORD];
+    int start, end;
+    start = end = 0;
+    int count = 0;
+
+    while ((c = getchar()) != EOF && c != '.') {
+        if (isspace(c)) {
+            if (state == IN) {
+                mass[end] = '\0';
+                if (mass[start] != mass[end]) {
+                    ++count;
+                }
+                start = end = 0;
+                state = OUT;
+            }
+        } else {
+            if (state == OUT) {
+                state = IN;
+
+                mass[start] = mass[end] = c;
+            }
+
+            if (end < MAXWORD - 1) {
+                mass[end++] = c;
+            }
+        }
+    }
+
+    if (state == IN) {
+        mass[end] = '\0';
+            if (mass[start] != mass[end]) {
+                ++count;
+                }
+        }
+
+    printf("%d", count);
+}

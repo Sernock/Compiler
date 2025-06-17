@@ -1,0 +1,37 @@
+// 3.3 Подвиг 3
+/*line = input()
+print(line.count("-"));
+*/
+
+// #include <stdio.h>
+// #include <string.h>
+// #define MAXLINE 50
+
+// int count(char s[]);
+
+// int main(void)
+// {   
+//     char line[MAXLINE];
+//     fgets(line, MAXLINE, stdin);
+
+//     char *ptr = strrchr(line, '\n');
+//     if (ptr != NULL) {
+//         *ptr = '\0';
+//     }
+
+//     int result = count(line);
+//     printf("%d", result);
+//     return 0;
+// }
+
+// int count(char s[])
+// {
+//     int count = 0;
+//     for (int i = 0; s[i] != '\0'; ++i) {
+//         if (s[i] == '-') {
+//             ++count;
+//         }
+//     }
+
+//     return count;
+// }

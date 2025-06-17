@@ -1,0 +1,29 @@
+// 3.3 Подвиг 4
+/*
+line = input()
+print(line.find("ra"))
+*/
+
+#include <stdio.h>
+#define MAXLINE 30
+
+int find(char s[]);
+
+int main(void)
+{
+    char line[MAXLINE];
+    fgets(line, MAXLINE, stdin);
+    int res = find(line);
+    printf("%d", res);
+    return 0;
+}
+
+int find(char s[])
+{
+    int i = 0;
+    for (i = 0; s[i] != '\0'; ++i) {
+        if (s[i] == 'r' && s[i+1] == 'a') {
+            return i;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define MAXLINE 15
+
+void squeeze(char s[], int c);
+
+int main(void)
+{
+    char line[MAXLINE];
+    int c;
+    fgets(line, MAXLINE, stdin);
+    c = getchar();
+    squeeze(line, c);
+    printf("%s", line);
+    return 0;
+}
+
+void squeeze(char s[], int c)
+{
+    int i, j;
+
+    for (i = j = 0; s[i] != '\0'; i++) {
+        if (s[i] != c) 
+            s[j++] = s[i];
+    }
+    s[j] = '\0'; 
+}

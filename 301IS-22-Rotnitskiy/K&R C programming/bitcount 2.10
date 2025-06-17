@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int bitcounts(unsigned x);
+
+int main(void)
+{
+    unsigned a = 12;
+    return 0;
+}
+
+int bitcounts(unsigned x)
+{
+    int b;
+    for (b = 0; x != 0; x >>= 1) {
+        if (x & 01)
+            b++;
+    }
+    return b;
+}

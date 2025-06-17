@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+enum escapes
+{
+    BELL = '\a',
+    BACKSPACE = '\b',
+    TAB = '\t',
+    NEWLINE = '\n',
+    VTAB = '\v',
+    RETURN = '\r'
+};
+
+enum months
+{
+    JAN = 1,
+    FEB,
+    NAR,
+    APR,
+    MAY,
+    JUN,
+    JUL,
+    AUG,
+    SEP,
+    OCT,
+    NOV,
+    DEC
+};
+
+int main(void)
+{
+    printf("%d%c%d", AUG, TAB, SEP);
+    return 0;
+}
